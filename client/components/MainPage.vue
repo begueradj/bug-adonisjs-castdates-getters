@@ -80,7 +80,7 @@
         sm6
       >
         <v-btn
-          @click="get"
+          @click="getFirstStudent"
         >
           Get
         </v-btn>
@@ -128,8 +128,6 @@ export default {
 
   methods: {
     async submitStudentInfo() {
-      console.log(this.studentId)
-      console.log(this.studentBirthday)
       const student = new FormData()
       student.set('id', this.studentId)
       student.set('name', this.studentName)
@@ -142,7 +140,7 @@ export default {
       await this.$axios.$post('students', student, config)
     },
 
-    async get() {
+    async getFirstStudent() {
       const info = await this.$axios.$get('students/ST100')
       this.id = info.id
       this.dob = info.dob

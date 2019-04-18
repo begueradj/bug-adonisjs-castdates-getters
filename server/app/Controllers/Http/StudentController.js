@@ -13,7 +13,7 @@ class StudentController {
     response.status(200)
   }
 
-  async show({ request, response, params }) {
+  async show({ response, params }) {
     try {
       const student = await Student.find(params.id)
       return student.toJSON()
