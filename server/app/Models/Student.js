@@ -19,7 +19,7 @@ class Student extends Model {
   
   static castDates(field, value) {
     if (field === 'dob') {
-      return value.format('YYYY-MM-DD')
+      return value.format('DD-MM-YYYY')
     }
   }
 
