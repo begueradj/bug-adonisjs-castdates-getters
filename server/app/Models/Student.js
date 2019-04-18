@@ -23,8 +23,8 @@ class Student extends Model {
     }
   }
 
-  static getId(id) {
-    return id.toLowerCase()
+  getName(name) {
+    return name.toLowerCase()
   }
 }
 

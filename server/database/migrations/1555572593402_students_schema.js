@@ -7,6 +7,7 @@ class StudentsSchema extends Schema {
   up () {
     this.create('students', (table) => {
       table.string('id', 30).primary()
+      table.string('name', 30).notNullable()
       table.date('dob').notNullable()
     })
   }

@@ -9,6 +9,7 @@ class StudentController {
     const student = new Student()
     student.id = data.id
     student.dob = data.dob
+    student.name = data.name
     await student.save()
     response.status(200)
   }

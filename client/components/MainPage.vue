@@ -12,7 +12,6 @@
       <v-flex
         xs12
         sm4
-        offset-sm4
       >
         <v-text-field
           v-model="studentId"
@@ -23,14 +22,23 @@
       <v-flex
         xs12
         sm4
-        offset-sm4
+      >
+        <v-text-field
+          v-model="studentName"
+          label="Student name"
+          outline
+        />
+      </v-flex>
+      <v-flex
+        xs12
+        sm4
       >
         <v-menu
           ref="menu"
           v-model="menu"
           :close-on-content-click="false"
           :nudge-right="40"
-          :return-value.sync="date"
+          :return-value.sync="studentBirthday"
           lazy
           transition="scale-transition"
           offset-y
@@ -39,14 +47,14 @@
         >
           <template v-slot:activator="{ on }">
             <v-text-field
-              v-model="date"
+              v-model="studentBirthday"
               label="Picker in menu"
               prepend-icon="event"
               readonly
               v-on="on"
             />
           </template>
-          <v-date-picker v-model="date" no-title scrollable>
+          <v-date-picker v-model="studentBirthday" no-title scrollable>
             <v-spacer />
             <v-btn flat color="primary" @click="menu = false">
               Cancel
@@ -80,16 +88,23 @@
       <v-flex
         v-if="id"
         xs12
-        sm6
+        sm4
       >
         Student ID: {{ id }}
       </v-flex>
       <v-flex
         v-if="dob"
         xs12
-        sm6
+        sm4
       >
         DOB: {{ dob }}
+      </v-flex>
+      <v-flex
+        v-if="name"
+        xs12
+        sm4
+      >
+        Name: {{ name }}
       </v-flex>
     </v-layout>
   </v-container>
@@ -102,21 +117,23 @@ export default {
   data() {
     return {
       studentId: null,
-      studentBirthDay: null,
-      date: new Date().toISOString().substr(0, 10),
+      studentName: null,
+      studentBirthday: new Date().toISOString().substr(0, 10),
       menu: false,
       id: null,
-      dob: null
+      dob: null,
+      name: null
     }
   },
 
   methods: {
     async submitStudentInfo() {
       console.log(this.studentId)
-      console.log(this.date)
+      console.log(this.studentBirthday)
       const student = new FormData()
       student.set('id', this.studentId)
-      student.set('dob', this.date)
+      student.set('name', this.studentName)
+      student.set('dob', this.studentBirthday)
       const config = {
         headers: {
           'content-type': 'application/json'
@@ -129,6 +146,7 @@ export default {
       const info = await this.$axios.$get('students/ST100')
       this.id = info.id
       this.dob = info.dob
+      this.name = info.name
     }
   }
 }
