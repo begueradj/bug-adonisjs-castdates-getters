@@ -13,14 +13,14 @@ class Student extends Model {
     return null
   }
 
-  // static castDates(field, value) {
-  //   if (field === 'dob') {
-  //     return value.format('YYYY-MM-DD')
-  //   }
-  // }
-
-  static getDob(dob) {
-    return dob.format('DD-MM-YYYY')
+  static get dates() {
+    return super.dates.concat(['dob'])
+  }
+  
+  static castDates(field, value) {
+    if (field === 'dob') {
+      return value.format('YYYY-MM-DD')
+    }
   }
 
   static getId(id) {
