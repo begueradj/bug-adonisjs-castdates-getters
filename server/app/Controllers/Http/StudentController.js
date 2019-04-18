@@ -7,9 +7,8 @@ class StudentController {
   async store({ request, response }) {
     const data = request.post()
     const student = new Student()
-    student.id = data.id
-    student.dob = data.dob
-    student.name = data.name
+    const keys = Object.keys(data)
+    keys.forEach((key) => { student[key] = data[key] })
     await student.save()
     response.status(200)
   }
@@ -17,7 +16,6 @@ class StudentController {
   async show({ request, response, params }) {
     try {
       const student = await Student.find(params.id)
-      console.log(student.toJSON())
       return student.toJSON()
     } catch(e) {
       console.log(e.message)

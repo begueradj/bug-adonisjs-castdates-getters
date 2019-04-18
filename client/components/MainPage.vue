@@ -59,7 +59,7 @@
             <v-btn flat color="primary" @click="menu = false">
               Cancel
             </v-btn>
-            <v-btn flat color="primary" @click="$refs.menu.save(date)">
+            <v-btn flat color="primary" @click="$refs.menu.save(studentBirthday)">
               OK
             </v-btn>
           </v-date-picker>
