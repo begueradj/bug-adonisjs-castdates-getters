@@ -142,6 +142,10 @@ export default {
 
     async getFirstStudent() {
       const info = await this.$axios.$get('students/ST100')
+      this.setStudentInfoForDisplay(info)
+    },
+
+    setStudentInfoForDisplay(info) {
       this.id = info.id
       this.dob = info.dob
       this.name = info.name
