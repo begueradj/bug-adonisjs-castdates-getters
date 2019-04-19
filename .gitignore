@@ -87,4 +87,4 @@ dist
 sw.*
 
 # Emacs backup files
-~*
+*~
